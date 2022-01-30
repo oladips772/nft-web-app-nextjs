@@ -1,9 +1,13 @@
 import React from 'react'
 import openSealogo from '../assets/opensea.png'
 import Image from 'next/image'
+import Link from 'next/link'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { CgProfile } from 'react-icons/cg'
+import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 
 const style = {
-  wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex `,
+  wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex items-center`,
   logoContainer: `flex items-center cursor-pointer`,
   logoText: ` ml-[0.8rem] text-white font-semibold text-2xl`,
   searchBar: `flex flex-1 mx-[0.8rem] w-max-[520px] items-center bg-[#363840] rounded-[0.8rem] hover:bg-[#4c505c]`,
@@ -17,9 +21,37 @@ const style = {
 function Header() {
   return (
     <div className={style.wrapper}>
-      <Link>
-        <Image src={openSealogo} alt="" />
+      <Link href="/">
+        <div className={style.logoContainer}>
+          <Image src={openSealogo} alt="" height={40} width={40} />
+          <div className={style.logoText}>Opensea</div>
+        </div>
       </Link>
+      {/* search bar div */}
+      <div className={style.searchBar}>
+        <div className={style.searchIcon}>
+          <AiOutlineSearch />
+        </div>
+        <input
+          placeholder="search items , collections , nfts , accounts"
+          className={style.searchInput}
+        />
+      </div>
+      {/* header items div */}
+      <div className={style.headerItems}>
+        <Link href="/collections/0xE3883290213bacE662a96152Dd90fa8E2696A85b">
+          <div className={style.headerItem}>Collections</div>
+        </Link>
+        <div className={style.headerItem}>Stats</div>
+        <div className={style.headerItem}>Resources</div>
+        <div className={style.headerItem}>Create</div>
+        <div className={style.headerIcon}>
+          <CgProfile />
+        </div>
+        <div className={style.headerIcon}>
+          <MdOutlineAccountBalanceWallet />
+        </div>
+      </div>
     </div>
   )
 }
