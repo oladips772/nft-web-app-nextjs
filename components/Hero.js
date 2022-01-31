@@ -45,7 +45,7 @@ function Hero() {
             {/* infoContainer */}
             <div className={style.infoContainer}>
               <img
-                className="h-[2.5rem] rounded-full"
+                className="h-[2.5rem] w-[2.5rem] rounded-full"
                 alt=""
                 src="https://lh3.googleusercontent.com/jSniiLwosYg4YNa5ZJg4S115fP-vZ570m5Mrup117XaGUKiN2VW_vK4tYPXmaYJ1ku3pQqeMNdZWdXAvCXpH6QAckALelFdTGtgcDbY=s550"
               />
