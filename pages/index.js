@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import { useWeb3 } from '@3rdweb/hooks'
+import { useEffect } from 'react'
 
 const style = {
   wrapper: ``,
@@ -12,6 +13,22 @@ const style = {
 
 export default function Home() {
   const { address, connectWallet } = useWeb3()
+
+  useEffect(() => {
+    if (!address) return
+    ;() => {
+      ;(async () => {
+        const userDoc = {
+          _type: 'users',
+          _id: address,
+          userName: 'Unnamed',
+          walletAddress: address,
+        }
+
+        const result = await client.createIfNotExists(userDoc)
+      })()
+    }
+  }, [address])
 
   return (
     <div className={style.wrapper}>
@@ -25,10 +42,17 @@ export default function Home() {
           <Hero />
         </>
       ) : (
-          <div className={style.walletConnectWrapper}>
-            <button className={style.button}>Connect wallet </button>
-            <div className={style.details}>You need chrome to be able to run this app</div>
+        <div className={style.walletConnectWrapper}>
+          <button
+            className={style.button}
+            onClick={() => connectWallet('injected')}
+          >
+            Connect wallet{' '}
+          </button>
+          <div className={style.details}>
+            You need chrome to be able to run this app
           </div>
+        </div>
       )}
     </div>
   )
